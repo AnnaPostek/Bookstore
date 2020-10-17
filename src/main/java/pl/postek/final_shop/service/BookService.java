@@ -11,17 +11,19 @@ import java.util.Optional;
 
 @Service
 public class BookService {
+    public static final Logger logger = LoggerFactory.getLogger(BookService.class);
+
     private BookRepository repository;
 
-    Logger logger = LoggerFactory.getLogger(BookService.class);
 
     public BookService(BookRepository repository) {
         this.repository = repository;
-        logger.info("Book created");
+        logger.info("BookService created");
     }
 
     public List<Book> findAllBooks() {
         List<Book> all = repository.findAll();
+        logger.info("number of found items: [{}]", all.size());
         return all;
     }
 
@@ -34,12 +36,13 @@ public class BookService {
     public Book saveBook(Book book) {
         logger.info("Book save in progress {[]}", book);
         Book savedBook = repository.save(book);
+        logger.info("after saving: [{}]", savedBook);
         return savedBook;
     }
 
-    public void delateById(Book book) {
-        logger.info("Delete Book {[]}", book);
-        repository.delete(book);
+    public void delateBookById(String id) {
+        logger.info("Delete Book with id {[]}", id);
+        repository.deleteById(id);
     }
 
 
