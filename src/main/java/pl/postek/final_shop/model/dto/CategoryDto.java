@@ -16,7 +16,7 @@ public class CategoryDto {
 
     private String id;
     private String categoryName;
-    private List<Book> books;
+    private List<BookDto> books;
 
 
 }
