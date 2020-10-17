@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.postek.final_shop.model.entity.Category;
 
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -15,11 +17,19 @@ import java.math.BigDecimal;
 public class BookDto {
 
     private String id;
+    @NotNull
+    @Size(min = 2)
     private String title;
+    @NotNull
+    @Size(min = 2)
     private String author;
     private String publishingHouse;
+    @NotNull
+    @Size(min = 2)
     private CategoryDto category;
     private String description;
+    @NotNull
+    @Min(1)
     private BigDecimal price;
     private int quantity;
 

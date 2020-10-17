@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.postek.final_shop.model.entity.Book;
-
 
 import java.util.List;
 @Data
