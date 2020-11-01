@@ -1,9 +1,10 @@
 package pl.postek.final_shop.model.converter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.postek.final_shop.model.dto.BookDto;
 import pl.postek.final_shop.model.entity.Book;
-
+@Component
 public class BookConverter implements Converter<Book, BookDto> {
 
     private CategoryConverter categoryConverter;

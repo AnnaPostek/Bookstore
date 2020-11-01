@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pl.postek.final_shop.model.entity.Book;
+import pl.postek.final_shop.model.entity.Category;
 import pl.postek.final_shop.repository.BookRepository;
 
 import java.util.List;
