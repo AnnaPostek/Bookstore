@@ -28,4 +28,12 @@ public class BookController {
         model.addAttribute("bookToShow", bookDto);
         return "books/show-book";
     }
+
+    @GetMapping("/add-book")
+    public String addBook(Model model) {
+        logger.info("add Book()");
+        model.addAttribute("book", BookDto.builder().build());
+        model.addAttribute("current_operation", "Adding new book");
+        return "books/add";
+    }
 }

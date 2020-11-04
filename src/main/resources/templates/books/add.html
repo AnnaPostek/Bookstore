@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title th:text="${current_operation}">Title</title>
+</head>
+<body>
+<div class="container">
+    <p th:text="${current_operation}">Operation...</p>
+    <form method="post" action="#" th:object="${book}" th:action="@{/book-save}">
+        <label for="titleId">Book title:</label>
+        <input type="text" id="titleId" th:field="*{title}">
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br>
+
+        <label for="authorId">Author:</label>
+        <input type="text" id="authorId" th:field="*{author}">
+        <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></span><br>
+
+        <label for="publishingHouseId">Publishing House:</label>
+        <input type="text" id="publishingHouseId" th:field="*{publishingHouse}">
+        <span th:if="${#fields.hasErrors('publishingHouse')}" th:errors="*{publishingHouse}"></span><br>
+
+        <label for="categoryId">Category:</label>
+        <input type="text" id="categoryId" th:field="*{category}">
+        <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span><br>
+
+        <label for="descriptionId">Description:</label>
+        <input type="text" id="descriptionId" th:field="*{description}">
+        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br>
+
+        <label for="quantityId">Quantity:</label>
+        <input type="text" id="quantityId" th:field="*{quantity}">
+        <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span><br>
+
+        <label for="priceId">Price:</label>
+        <input type="text" id="priceId" th:field="*{price}">
+        <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
