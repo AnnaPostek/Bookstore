@@ -1,10 +1,12 @@
 package pl.postek.final_shop.controller;
 
+import org.dom4j.rule.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +17,10 @@ import pl.postek.final_shop.model.dto.BookDto;
 import pl.postek.final_shop.model.entity.Book;
 import pl.postek.final_shop.service.BookService;
 
+import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class BookController {
@@ -26,6 +31,18 @@ public class BookController {
     public BookController(final BookService service, final BookConverter converter) {
         this.service = service;
         this.converter = converter;
+    }
+
+    @GetMapping("/all-books")
+    public String gettAllBooks(Model model) {
+        logger.info("getAllBooks()");
+        List<BookDto> bookDtos = service.findAllBooks()
+                .stream()
+                .map(converter::fromEntity)
+                .collect(Collectors.toList());
+        model.addAttribute("books", bookDtos);
+        return "books/all-books";
+
     }
 
     @GetMapping("/book/{id}")
@@ -44,6 +61,20 @@ public class BookController {
         model.addAttribute("book", BookDto.builder().build());
         model.addAttribute("current_operation", "Adding new book");
         return "books/add-edit";
+    }
+
+    @PostMapping("/book-save")
+    public String saveBook(@Valid BookDto book, BindingResult bindingResult, Model model) {
+        logger.info("saveBook() [{}]", book);
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("book", book);
+            logger.warn("book is not valid");
+            return "books/add-edit";
+        }
+        Book convertedBook = converter.fromDto(book);
+        service.saveBook(convertedBook);
+        return "redirect:/books/" + convertedBook.getId();
+
     }
 
     @PostMapping("/edit-book/{id}")
