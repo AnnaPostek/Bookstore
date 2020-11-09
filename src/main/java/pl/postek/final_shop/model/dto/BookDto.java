@@ -26,7 +26,8 @@ public class BookDto {
     private String publishingHouse;
     @NotNull
     @Size(min = 2)
-    private CategoryDto category;
+    private CategoryDto
+            category;
     private String description;
     @NotNull
     @Min(1)

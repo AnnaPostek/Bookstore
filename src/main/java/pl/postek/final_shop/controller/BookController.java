@@ -1,9 +1,7 @@
 package pl.postek.final_shop.controller;
 
-import org.dom4j.rule.Mode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,6 +71,7 @@ public class BookController {
         }
         Book convertedBook = converter.fromDto(book);
         service.saveBook(convertedBook);
+        logger.info("saveBook() [{}]", convertedBook);
         return "redirect:/books/" + convertedBook.getId();
 
     }

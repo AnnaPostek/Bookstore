@@ -37,11 +37,11 @@ public class CategoryConverter implements Converter<Category, CategoryDto> {
 
     @Override
     public Category fromDto(CategoryDto dto) {
-        return Category.builder()
-                .id(dto.getId())
-                .categoryName(dto.getCategoryName())
-                .books(getAllItemsConvertedFrom(dto))
-                .build();
+        return new Category(
+                dto.getId(),
+                dto.getCategoryName(),
+                getAllItemsConvertedFrom(dto)
+        );
     }
 
     private List<Book> getAllItemsConvertedFrom(CategoryDto dto) {
@@ -50,4 +50,5 @@ public class CategoryConverter implements Converter<Category, CategoryDto> {
                 .map(bookConverter::fromDto)
                 .collect(Collectors.toList());
     }
+
 }

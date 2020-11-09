@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.postek.final_shop.model.dto.BookDto;
 import pl.postek.final_shop.model.entity.Book;
+
 @Component
 public class BookConverter implements Converter<Book, BookDto> {
 
@@ -13,6 +14,7 @@ public class BookConverter implements Converter<Book, BookDto> {
     public void setCategoryConverter(CategoryConverter categoryConverter) {
         this.categoryConverter = categoryConverter;
     }
+
 
     @Override
     public BookDto fromEntity(Book entity) {
@@ -30,15 +32,15 @@ public class BookConverter implements Converter<Book, BookDto> {
 
     @Override
     public Book fromDto(BookDto dto) {
-        return Book.builder()
-                .id(dto.getId())
-                .title(dto.getTitle())
-                .author(dto.getAuthor())
-                .publishingHouse(dto.getPublishingHouse())
-                .category(categoryConverter.fromDto(dto.getCategory()))
-                .description(dto.getDescription())
-                .price(dto.getPrice())
-                .quantity(dto.getQuantity())
-                .build();
+        return new Book(
+                dto.getId(),
+                dto.getTitle(),
+                dto.getAuthor(),
+                dto.getPublishingHouse(),
+                categoryConverter.fromDto(dto.getCategory()),
+                dto.getDescription(),
+                dto.getPrice(),
+                dto.getQuantity()
+        );
     }
 }
