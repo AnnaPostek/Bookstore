@@ -13,6 +13,7 @@
 <div class="container">
     <p th:text="${current_operation}">Operation...</p>
     <form method="post" action="#" th:object="${book}" th:action="@{/book-save}">
+        <input type="hidden" th:field="*{id}">
         <label for="titleId">Book title:</label>
         <input type="text" id="titleId" th:field="*{title}">
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br>
@@ -34,11 +35,11 @@
         <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br>
 
         <label for="quantityId">Quantity:</label>
-        <input type="text" id="quantityId" th:field="*{quantity}">
+        <input type="number" id="quantityId" th:field="*{quantity}" value=1>
         <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></span><br>
 
         <label for="priceId">Price:</label>
-        <input type="text" id="priceId" th:field="*{price}">
+        <input type="number" id="priceId" th:field="*{price}">
         <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span><br>
 
         <input type="submit" value="Submit">

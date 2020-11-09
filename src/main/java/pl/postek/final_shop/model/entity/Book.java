@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Table(name = "bookstore")
 public class Book {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private String title;
     private String author;

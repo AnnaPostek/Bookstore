@@ -73,6 +73,7 @@ public class BookController {
         }
         Book convertedBook = converter.fromDto(book);
         service.saveBook(convertedBook);
+        logger.info("saveBook() [{}]", convertedBook);
         return "redirect:/books/" + convertedBook.getId();
 
     }
