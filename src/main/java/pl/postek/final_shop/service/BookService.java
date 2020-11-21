@@ -3,6 +3,7 @@ package pl.postek.final_shop.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.postek.final_shop.model.entity.Book;
 import pl.postek.final_shop.model.entity.Category;
 import pl.postek.final_shop.repository.BookRepository;
@@ -34,6 +35,7 @@ public class BookService {
         return byId;
     }
 
+    @Transactional
     public Book saveBook(Book book) {
         logger.info("Book save in progress {[]}", book);
         Book savedBook = repository.save(book);
