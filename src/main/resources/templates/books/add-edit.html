@@ -13,7 +13,9 @@
 <div class="container">
     <p th:text="${current_operation}">Operation...</p>
     <form method="post" action="#" th:object="${book}" th:action="@{/book-save}">
-        <input type="hidden" th:field="*{id}">
+        <input type="hidden" id="bookId" th:field="*{id}">
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></span><br>
+
         <label for="titleId">Book title:</label>
         <input type="text" id="titleId" th:field="*{title}">
         <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span><br>

@@ -24,7 +24,7 @@
         <tr th:each="book : ${books}">
             <td th:text="${book.title}">Dummy name</td>
             <td th:text="${book.price}">4000.00</td>
-            <td><a th:href="@{'/books/' + ${book.id}}" href="#">Link to item</a></td>
+            <td><a th:href="@{'/books/' + ${book.id}}" href="#">Link to book</a></td>
         </tr>
         </tbody>
     </table>
