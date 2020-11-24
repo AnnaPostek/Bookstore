@@ -16,7 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Category {
     @Id
-    private String id;
+    @GeneratedValue
+    private Long id;
     private String categoryName;
     @OneToMany
     private List<Book> books;
