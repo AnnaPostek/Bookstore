@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.postek.final_shop.exception.BookNotFoundException;
 import pl.postek.final_shop.model.converter.BookConverter;
 import pl.postek.final_shop.model.dto.BookDto;
+import pl.postek.final_shop.model.dto.CategoryDto;
 import pl.postek.final_shop.model.entity.Book;
 import pl.postek.final_shop.service.BookService;
 
@@ -43,7 +44,7 @@ public class BookController {
 
     }
 
-    @GetMapping("/book/{id}")
+    @GetMapping("/books/{id}")
     public String displayBookById(@PathVariable String id, Model model) {
         logger.info("Show Book With id [{}]", id);
         BookDto bookDto = service.findBookById(id)
@@ -56,7 +57,7 @@ public class BookController {
     @GetMapping("/add-book")
     public String addBook(Model model) {
         logger.info("add Book()");
-        model.addAttribute("book", BookDto.builder().build());
+        model.addAttribute("book", BookDto.builder().category(CategoryDto.builder().build()).build());
         model.addAttribute("current_operation", "Adding new book");
         return "books/add-edit";
     }
@@ -70,9 +71,9 @@ public class BookController {
             return "books/add-edit";
         }
         Book convertedBook = converter.fromDto(book);
-        service.saveBook(convertedBook);
-        logger.info("saveBook() [{}]", convertedBook);
-        return "redirect:/books/" + convertedBook.getId();
+        Book saved = service.saveBook(convertedBook);
+        logger.info("saveBook() [{}]", saved);
+        return "redirect:/books/" + saved.getId();
 
     }
 
