@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,7 +34,7 @@ public class BookController {
     }
 
     @GetMapping("/all-books")
-    public String gettAllBooks(Model model) {
+    public String getAllBooks(Model model) {
         logger.info("getAllBooks()");
         List<BookDto> bookDtos = service.findAllBooks()
                 .stream()
@@ -65,8 +66,12 @@ public class BookController {
     @PostMapping("/book-save")
     public String saveBook(@Valid BookDto book, BindingResult bindingResult, Model model) {
         logger.info("saveBook() [{}]", book);
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
+            List<ObjectError> allErrors = bindingResult.getAllErrors();
+            for (ObjectError allError : allErrors) {
+                System.out.println(allError.getDefaultMessage());
+            }
             logger.warn("book is not valid");
             return "books/add-edit";
         }
@@ -77,11 +82,10 @@ public class BookController {
 
     }
 
-    @PostMapping("/edit-book/{id}")
+    @GetMapping("/edit-book/{id}")
     public String editBook(Model model, @PathVariable String id) {
         logger.info("editBook() with id: [{}]", id);
         Optional<Book> foundBook = service.findBookById(id);
-
         BookDto bookDto = foundBook
                 .map(converter::fromEntity)
                 .orElseThrow(() -> new BookNotFoundException(String.format("Book with id %s not exists", id)));
@@ -96,6 +100,5 @@ public class BookController {
         model.addAttribute("exc_message", exc.getMessage());
         return "exception/error-item-not-found";
     }
-
 
 }

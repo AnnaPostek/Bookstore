@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -19,20 +20,18 @@ import java.math.BigDecimal;
 public class BookDto {
 
     private String id;
-    @NotNull
-    @Size(min = 2)
+    @NotBlank(message = "Book need to have a title")
+    @Size(min = 2, message = "Please add more than 2 sign")
     private String title;
-    @NotNull
-    @Size(min = 2)
+    @NotNull (message = "Book need to have an author")
+    @Size(min = 2, message = "Please add more that 2 sign")
     private String author;
     private String publishingHouse;
-    @NotNull
-    @Size(min = 2)
+    @NotNull(message = "Category cannot be empty")
     private CategoryDto
             category;
     private String description;
-    @NotNull
-    @Min(1)
+    @NotNull(message = "Price cannot be empty")
     private BigDecimal price;
     private int quantity;
 
