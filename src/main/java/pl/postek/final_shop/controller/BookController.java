@@ -68,10 +68,7 @@ public class BookController {
         logger.info("saveBook() [{}]", book);
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
-            List<ObjectError> allErrors = bindingResult.getAllErrors();
-            for (ObjectError allError : allErrors) {
-                System.out.println(allError.getDefaultMessage());
-            }
+            bindingResult.getAllErrors().forEach(p-> System.out.println(p));
             logger.warn("book is not valid");
             return "books/add-edit";
         }
@@ -79,7 +76,6 @@ public class BookController {
         Book saved = service.saveBook(convertedBook);
         logger.info("saveBook() [{}]", saved);
         return "redirect:/books/" + saved.getId();
-
     }
 
     @GetMapping("/edit-book/{id}")
