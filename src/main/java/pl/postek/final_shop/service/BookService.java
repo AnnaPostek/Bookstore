@@ -43,7 +43,7 @@ public class BookService {
         return savedBook;
     }
 
-    public void delateBookById(String id) {
+    public void deleteBookById(String id) {
         logger.info("Delete Book with id {[]}", id);
         repository.deleteById(id);
     }

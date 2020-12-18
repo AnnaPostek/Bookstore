@@ -28,7 +28,7 @@ public class BookController {
     private final BookService service;
     private final BookConverter converter;
 
-    public BookController(final BookService service, final BookConverter converter) {
+    public BookController(BookService service, BookConverter converter) {
         this.service = service;
         this.converter = converter;
     }
