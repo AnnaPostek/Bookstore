@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "order")
+@Table(name = "book_order")
 @Data
 @Builder
 @NoArgsConstructor
@@ -24,7 +24,7 @@ public class Order {
     private String orderId;
     @ManyToOne
     private Customer customer;
-    @ManyToMany
+    @ManyToMany (targetEntity = Book.class)
     private List<Book> book = new ArrayList<>();
     private LocalDateTime date;
     private String deliveryName;

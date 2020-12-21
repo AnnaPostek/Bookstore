@@ -17,5 +17,8 @@ public class CategoryDto {
     private String categoryName;
     private List<BookDto> books = new ArrayList<>();
 
+    public void addBookToCategory(BookDto bookDto) {
+        books.add(bookDto);
+    }
 
 }
