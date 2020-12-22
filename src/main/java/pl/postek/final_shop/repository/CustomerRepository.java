@@ -6,4 +6,6 @@ import pl.postek.final_shop.model.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, String> {
+
+    Customer findByFullName(String fullName);
 }
