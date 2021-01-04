@@ -4,26 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.postek.final_shop.model.dto.BookDto;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "category")
+@Table(name = "customer")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String categoryName;
-    @OneToMany
-    private List<Book> books;
+    private String id;
+    private String userName;
+    private String password;
+    private String fullName;
+    private String street;
+    private String city;
+    private String state;
+    private String zip;
+    private String phoneNumber;
 
-    public void addBookToCategory(Book book) {
-        books.add(book);
-    }
 }
