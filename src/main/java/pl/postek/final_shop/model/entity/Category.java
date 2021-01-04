@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.postek.final_shop.model.dto.BookDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,7 +22,4 @@ public class Category {
     @OneToMany
     private List<Book> books;
 
-    public void addBookToCategory(Book book) {
-        books.add(book);
-    }
 }
