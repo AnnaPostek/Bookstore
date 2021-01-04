@@ -22,13 +22,14 @@ public class OrderController {
     public String orderForm(Customer customer, Order order) {
         service.form(order, customer);
         logger.info("orderForm with customerId [{}] and orderId [{}]", customer.getId(), order.getOrderId());
-        return "orderForm";
+        return "order/order-form";
     }
 
     @PostMapping
     public String processOrder(Order order, Customer customer) {
         logger.info("order is processing...");
         order.setCustomer(customer);
+        service.save(order);
         return "redirect:/";
     }
 }

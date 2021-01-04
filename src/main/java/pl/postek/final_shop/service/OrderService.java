@@ -28,4 +28,8 @@ public class OrderService {
         }
         return order;
     }
+
+    public Order save(Order order) {
+      return  repository.save(order);
+    }
 }
