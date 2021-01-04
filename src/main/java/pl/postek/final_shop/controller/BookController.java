@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.postek.final_shop.exception.BookNotFoundException;
 import pl.postek.final_shop.model.converter.BookConverter;
 import pl.postek.final_shop.model.dto.BookDto;
+import pl.postek.final_shop.model.dto.CategoryDto;
 import pl.postek.final_shop.model.entity.Book;
 import pl.postek.final_shop.service.BookService;
 
@@ -27,7 +28,7 @@ public class BookController {
     private final BookService service;
     private final BookConverter converter;
 
-    public BookController(BookService service, BookConverter converter) {
+    public BookController(final BookService service, final BookConverter converter) {
         this.service = service;
         this.converter = converter;
     }
@@ -57,7 +58,7 @@ public class BookController {
     @GetMapping("/add-book")
     public String addBook(Model model) {
         logger.info("add Book()");
-        model.addAttribute("book", new Book());
+        model.addAttribute("book", BookDto.builder().category(CategoryDto.builder().build()).build());
         model.addAttribute("current_operation", "Adding new book");
         return "books/add-edit";
     }
