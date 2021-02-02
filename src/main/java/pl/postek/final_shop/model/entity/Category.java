@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,4 +23,10 @@ public class Category {
     @OneToMany
     private List<Book> books;
 
+
+    public Category(Long id, String categoryName) {
+        this.id = id;
+        this.categoryName = categoryName;
+        this.books = new ArrayList<>();
+    }
 }

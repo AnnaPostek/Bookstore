@@ -13,6 +13,7 @@ public class FinalShopApplication {
     public static void main(String[] args) {
         SpringApplication.run(FinalShopApplication.class, args);
     }
+
     @Bean
     Validator validator() {
         return new LocalValidatorFactoryBean();
