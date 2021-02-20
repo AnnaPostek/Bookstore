@@ -1,4 +1,5 @@
 # Bookstore
 
 
-I use: Java, Springboot, JPA, H2, jUnit, Swagger, Maven
+Bookstore project is CRUD application. It helps managementof books helds on stock for booksellers. 
+Application is using Spring Boot, Maven, JUnit, H2.
