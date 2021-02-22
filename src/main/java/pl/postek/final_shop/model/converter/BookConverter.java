@@ -10,7 +10,8 @@ import pl.postek.final_shop.model.entity.Book;
 public class BookConverter implements Converter<Book, BookDto> {
 
     private CategoryConverter categoryConverter;
-@Autowired
+
+    @Autowired
     public void setCategoryConverter(CategoryConverter categoryConverter) {
         this.categoryConverter = categoryConverter;
     }
