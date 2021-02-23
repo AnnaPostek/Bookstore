@@ -2,15 +2,15 @@ package pl.postek.final_shop.controller;
 
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import pl.postek.final_shop.model.dto.BookDto;
 import pl.postek.final_shop.model.dto.CategoryDto;
-import pl.postek.final_shop.model.entity.Category;
 
 import java.math.BigDecimal;
 
 import static io.restassured.RestAssured.*;
 
-
+@SpringBootTest(properties = "testApplication.properties")
 class BookControllerTest {
 
     @Test
@@ -61,7 +61,7 @@ class BookControllerTest {
 
         given().auth().basic("user", "user")
                 .when()
-                .request("GET", "/add-book")
+                .get( "/add-book")
                 .then()
                 .statusCode(HttpStatus.SC_FORBIDDEN);
     }
@@ -71,8 +71,9 @@ class BookControllerTest {
 
         given().auth().basic("user", "user")
                 .when()
-                .request("POST", "/book-save")
+                .post("/book-save")
                 .then()
+                .assertThat()
                 .statusCode(403);
     }
 
@@ -81,8 +82,9 @@ class BookControllerTest {
         with().body(new BookDto("1", "title", "author", "sowa", new CategoryDto(1L, "horror"), "desc", new BigDecimal(15.55), 15))
                 .given().auth().basic("admin", "admin")
                 .when()
-                .request("POST", "/book-save")
+                .post( "/book-save")
                 .then()
+                .assertThat()
                 .statusCode(HttpStatus.SC_OK);
     }
 
