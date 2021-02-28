@@ -12,7 +12,17 @@
 <body>
 <div class="container">
     <h2>Hello in Book Shelves Management</h2>
-    <img th:src="@{/images/pobrane.png}"/>
+    <img th:src="@{/images/pobrane.png}" style="width:304px;height:228px"/>
+    <table>
+        <tbody>
+        <p>
+            <a th:href="@{/add-book}" href="#">Add book</a>
+        </p>
+        <p>
+            <a th:href="@{/all-books}" href="#">All books</a>
+        </p>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
