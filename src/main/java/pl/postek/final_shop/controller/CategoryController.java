@@ -27,12 +27,13 @@ public class CategoryController {
     }
 
     @GetMapping("/all-categories")
-    public List<CategoryDto> getAllCategories() {
+    public String getAllCategories(Model model) {
         List<CategoryDto> categoryDtos = service.findAllCategory()
                 .stream()
                 .map(converter::fromEntity)
                 .collect(Collectors.toList());
-        return categoryDtos;
+        model.addAttribute("categories", categoryDtos);
+       return "categories/all-categories";
 
     }
 }
