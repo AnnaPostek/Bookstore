@@ -3,6 +3,7 @@ package pl.postek.final_shop.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pl.postek.final_shop.model.dto.CategoryDto;
 import pl.postek.final_shop.model.entity.Category;
 import pl.postek.final_shop.repository.CategoryRepository;
 
@@ -17,7 +18,7 @@ public class CategoryService {
         this.repository = repository;
     }
 
-   public List<Category> findAllCategory(){
+   public List<Category> getAllCategories(){
        List<Category> all = repository.findAll();
        logger.info("number of found category: " + all.size());
        return all;

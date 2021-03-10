@@ -28,7 +28,7 @@ public class CategoryController {
 
     @GetMapping("/all-categories")
     public String getAllCategories(Model model) {
-        List<CategoryDto> categoryDtos = service.findAllCategory()
+        List<CategoryDto> categoryDtos = service.getAllCategories()
                 .stream()
                 .map(converter::fromEntity)
                 .collect(Collectors.toList());

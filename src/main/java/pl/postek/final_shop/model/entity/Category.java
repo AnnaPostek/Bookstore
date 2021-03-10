@@ -19,7 +19,7 @@ public class Category {
     @Id
     private Long id;
     private String categoryName;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Book> books;
 
 
