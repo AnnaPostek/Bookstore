@@ -29,12 +29,14 @@
         <span th:if="${#fields.hasErrors('publishingHouse')}" th:errors="*{publishingHouse}"></span><br>
 
         <label for="category">Category:</label>
-        <select id="category" th:field="*{category}">
-            <option th:each="category : ${categories}"
-                    th:value="${category.id}"
-                    th:text="${category.categoryName}">Wireframe</option>
+        <select id="category" th:field="*{categoryId}">
+            <option value="">Select Category</option>
+            <option th:each="categoryId : ${categories}"
+                    th:value="${categoryId.id}"
+                    th:text="${categoryId.categoryName}"
+            th:selected="${categoryId}">Wireframe</option>
         </select>
-        <span th:if="${#fields.hasErrors('categories')}" th:errors="*{category}"></span><br>
+<!--        <span th:if="${#fields.hasErrors('categories')}" th:errors="*{category}"></span><br>-->
 
 <!--        <select th:field="*{type}">-->
 <!--            <option th:each="type : ${allTypes}"-->

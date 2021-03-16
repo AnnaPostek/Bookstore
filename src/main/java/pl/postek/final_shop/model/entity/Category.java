@@ -19,7 +19,7 @@ public class Category {
     @Id
     private Long id;
     private String categoryName;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Book> books;
 
 
@@ -28,4 +28,5 @@ public class Category {
         this.categoryName = categoryName;
         this.books = new ArrayList<>();
     }
+
 }

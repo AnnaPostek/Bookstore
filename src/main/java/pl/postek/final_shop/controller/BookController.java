@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.postek.final_shop.exception.BookNotFoundException;
 import pl.postek.final_shop.model.converter.BookConverter;
-import pl.postek.final_shop.model.converter.CategoryConverter;
+import pl.postek.final_shop.model.converter.CategoryConverterToCategoryName;
 import pl.postek.final_shop.model.dto.BookDto;
 import pl.postek.final_shop.model.entity.Book;
 import pl.postek.final_shop.service.BookService;
@@ -28,10 +28,10 @@ public class BookController {
     private static final Logger logger = LoggerFactory.getLogger(BookController.class);
     private final BookService bookService;
     private final BookConverter bookConverter;
-    private final CategoryConverter categoryConverter;
+    private final CategoryConverterToCategoryName categoryConverter;
     private final CategoryService categoryService;
 
-    public BookController(BookService service, BookConverter converter, CategoryConverter categoryConverter,
+    public BookController(BookService service, BookConverter converter, CategoryConverterToCategoryName categoryConverter,
                           CategoryService categoryService) {
         this.bookService = service;
         this.bookConverter = converter;
@@ -65,7 +65,7 @@ public class BookController {
     public String addBook(Model model) {
         logger.info("add Book()");
         model.addAttribute("categories", categoryService.getAllCategories().stream()
-                .map(categoryConverter::fromEntity).collect(Collectors.toList()));
+                .map(category -> categoryConverter.convert(category.getId())).collect(Collectors.toList()));
         model.addAttribute("book", BookDto.builder().build());
         model.addAttribute("current_operation", "Adding new book");
         return "books/add-edit";
@@ -77,7 +77,7 @@ public class BookController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
             model.addAttribute("categories", categoryService.getAllCategories().stream()
-                    .map(categoryConverter::fromEntity).collect(Collectors.toList()));
+                    .map(category -> categoryConverter.convert(category.getId())).collect(Collectors.toList()));
             List<ObjectError> allErrors = bindingResult.getAllErrors();
             for (ObjectError allError : allErrors) {
                 System.out.println(allError.getDefaultMessage());

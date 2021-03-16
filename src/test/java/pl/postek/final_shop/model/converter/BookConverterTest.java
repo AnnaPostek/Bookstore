@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.postek.final_shop.model.dto.BookDto;
-import pl.postek.final_shop.model.dto.CategoryDto;
 import pl.postek.final_shop.model.entity.Book;
 import pl.postek.final_shop.model.entity.Category;
 
@@ -36,8 +35,8 @@ class BookConverterTest {
     void convertBookDtoForBook_returnTrue() {
 
         //given
-        CategoryDto catDto = new CategoryDto(1L, "horror");
-        BookDto dto = new BookDto("1", "title", "author", "sowa", catDto, "desc", new BigDecimal(15.55), 15);
+        Long categoryId = 2L;
+        BookDto dto = new BookDto("1", "title", "author", "sowa", categoryId, "desc", new BigDecimal(15.55), 15);
         //when
         Book book = converter.fromDto(dto);
         //then
