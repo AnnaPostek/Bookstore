@@ -17,7 +17,7 @@ java -jar target/final_shop-0.0.1-SNAPSHOT.jar
 Application is available on below localhost:
 http://localhost:8080/
 
-# Endpoints:
+## Endpoints:
 GET /all-books - get list of all books
 
 GET /books/{id} display book by Id
@@ -30,16 +30,16 @@ GET /edit-book/{id} - edit book with id
 
 GET /all-categories - get list of allcategories, which is in data.sql
 
-# Users
+## Users
 User which has permission for all functionalities:
--admin-
+-**admin**-
 password 
--admin- 
+-**admin**- 
 
 user without moderation mode:
--user-
+-**user**-
 password
--user-
+-**user**-
 has access to /all-books
 
 the rest endpoints can be use for everyone without log in
