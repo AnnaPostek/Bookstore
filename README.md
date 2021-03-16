@@ -32,14 +32,15 @@ GET /all-categories - get list of allcategories, which is in data.sql
 
 ## Users
 User which has permission for all functionalities:
-- **admin** -
+- **admin**
 password 
-- **admin** - 
+**admin** 
 
 user without moderation mode:
-- **user** -
+- **user**
 password
-- **user** -
+**user**
+
 has access to /all-books
 
 the rest endpoints can be use for everyone without log in
