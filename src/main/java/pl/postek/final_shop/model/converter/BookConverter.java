@@ -9,10 +9,10 @@ import pl.postek.final_shop.model.entity.Book;
 @Component
 public class BookConverter implements Converter<Book, BookDto> {
 
-    private CategoryConverter categoryConverter;
+    private CategoryConverterToCategoryName categoryConverter;
 
     @Autowired
-    public void setCategoryConverter(CategoryConverter categoryConverter) {
+    public void setCategoryConverter(CategoryConverterToCategoryName categoryConverter) {
         this.categoryConverter = categoryConverter;
     }
 
@@ -24,7 +24,7 @@ public class BookConverter implements Converter<Book, BookDto> {
                 .title(entity.getTitle())
                 .author(entity.getAuthor())
                 .publishingHouse(entity.getPublishingHouse())
-                .category(categoryConverter.fromEntity(entity.getCategory()))
+                .categoryId(entity.getCategory().getId())
                 .description(entity.getDescription())
                 .price(entity.getPrice())
                 .quantity(entity.getQuantity())
@@ -38,7 +38,7 @@ public class BookConverter implements Converter<Book, BookDto> {
                 dto.getTitle(),
                 dto.getAuthor(),
                 dto.getPublishingHouse(),
-                categoryConverter.fromDto(dto.getCategory()),
+                categoryConverter.convert(dto.getCategoryId()),
                 dto.getDescription(),
                 dto.getPrice(),
                 dto.getQuantity()

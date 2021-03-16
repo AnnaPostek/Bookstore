@@ -28,9 +28,21 @@
         <input type="text" id="publishingHouseId" th:field="*{publishingHouse}">
         <span th:if="${#fields.hasErrors('publishingHouse')}" th:errors="*{publishingHouse}"></span><br>
 
-        <label for="categoryName">Category:</label>
-        <input type="text" id="categoryName" th:field="*{category.categoryName}">
-        <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span><br>
+        <label for="category">Category:</label>
+        <select id="category" th:field="*{categoryId}">
+            <option value="">Select Category</option>
+            <option th:each="categoryId : ${categories}"
+                    th:value="${categoryId.id}"
+                    th:text="${categoryId.categoryName}"
+            th:selected="${categoryId}">Wireframe</option>
+        </select>
+<!--        <span th:if="${#fields.hasErrors('categories')}" th:errors="*{category}"></span><br>-->
+
+<!--        <select th:field="*{type}">-->
+<!--            <option th:each="type : ${allTypes}"-->
+<!--                    th:value="${type}"-->
+<!--                    th:text="#{${'seedstarter.type.' + type}}">Wireframe</option>-->
+<!--        </select>-->
 
         <label for="descriptionId">Description:</label>
         <input type="text" id="descriptionId" th:field="*{description}">
