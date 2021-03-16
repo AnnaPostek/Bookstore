@@ -19,9 +19,13 @@ http://localhost:8080/
 
 # Endpoints:
 GET /all-books - get list of all books
+
 GET /books/{id} display book by Id
+
 GET /add-book - add book
+
 POST /book-save - save book in entity
+
 GET /edit-book/{id} - edit book with id
 
 GET /all-categories - get list of allcategories, which is in data.sql
