@@ -17,10 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String categoryName;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Book> books;
 
 
@@ -29,4 +28,5 @@ public class Category {
         this.categoryName = categoryName;
         this.books = new ArrayList<>();
     }
+
 }

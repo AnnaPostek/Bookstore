@@ -25,8 +25,7 @@ public class BookDto {
     private String author;
     private String publishingHouse;
     @NotNull(message = "Category cannot be empty")
-    private CategoryDto
-            category;
+    private Long categoryId;
     private String description;
     @NotNull(message = "Price cannot be empty")
     private BigDecimal price;
